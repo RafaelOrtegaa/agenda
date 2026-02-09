@@ -5,16 +5,24 @@
             
             <div class="mb-3">
                 <label for="titulo-tarefa" class="form-label">Título da tarefa</label>
-                <input type="text" class="form-control" name = "titulo-tarefa" d="titulo-tarefa" aria-describedby="ajudaNomeTarefa" required>
-                <div id="ajudaNomeTarefa" class="form-text">Use um nome de tarefa que seja descritivo</div>
+                <input type="text" class="form-control" name = "titulo-tarefa" id="titulo-tarefa" aria-describedby="ajudaNomeTarefa" value="{{ tarefa_selecionada.titulo_tarefa if
+                tarefa_selecionada else '' }}" required>
+            <div id="ajudaNomeTarefa" class="form-text">Use um nome de tarefa que seja descritivo</div>
             </div>
 
             <div class="mb-3">
                 <label for="data-conclusao" class="form-label">Data de conclusão</label>
-                <input type="date" class="form-control" name="data-conclusao" id="data-conclusao">
+                <input type="date" class="form-control" name="data-conclusao" id="data-conclusao"
+                value="{{ tarefa_selecionada.data_conclusao if tarefa_selecionada else '' }}">
             </div>
             
-            <button type="submit" class="btn btn-primary">Adicionar</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+
+            {% if tarefa_selecionada %}
+                <a href="{{ url_for('agenda') }}" class="btn btn-secondary">Cancelar</a>
+            {% endif %}
+
+
     </form>
 
 <h2>Lista de Tarefas</h2>
@@ -23,7 +31,11 @@
 
         <ul>
             {% for tarefa in tarefas %}
-                <li>{{ tarefa.titulo_tarefa }} - {{ tarefa.data_conclusao }} <a href="{{ url_for('delete', idTarefa=tarefa.id_tarefa) }}">Apagar</a></li>
+                <li>{{ tarefa.titulo_tarefa }} - {{ tarefa.data_conclusao }} 
+                    <a href="{{ url_for('delete', idTarefa=tarefa.id_tarefa) }}" class="btn btn-danger">🗑️</a>
+                    <a href="{{ url_for('update', idTarefa=tarefa.id_tarefa) }}" class="btn btn-outline-primary">✏️</a>
+                    <!-- Controle para editar -->
+                </li>
             {% endfor %}    
         </ul>
 

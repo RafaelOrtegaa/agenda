@@ -1,83 +1,62 @@
-/* *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",sans-serif;
+:root{
+    --bs-primary: #198754;      
+    --bs-success: #2fbf71;
+    --bs-link-color: #198754;
+    --bs-link-hover-color: #146c43;
 }
 
-body{
-    min-height:100vh;
-    background:#f7f8fa;
-    color:#1f2937;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
+
+.btn-primary{
+    background-color: #198754 !important;
+    border-color: #198754 !important;
 }
 
-h1{
-    margin:40px 0 20px;
-    font-weight:600;
+.btn-primary:hover{
+    background-color: #146c43 !important;
+    border-color: #146c43 !important;
 }
 
-main{
-    width:100%;
-    display:flex;
-    justify-content:center;
+
+.btn-outline-primary{
+    color: #198754 !important;
+    border-color: #198754 !important;
 }
 
-main > *{
-    width:340px;
+.btn-outline-primary:hover{
+    background-color: #198754 !important;
+    color: #fff !important;
 }
 
-form{
-    background:#fff;
-    padding:18px;
-    border-radius:12px;
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-    border:1px solid #e5e7eb;
+
+.card-header.bg-primary{
+    background-color: #198754 !important;
 }
 
-input, button{
-    padding:10px 12px;
-    border-radius:8px;
-    font-size:14px;
+.form-control:focus{
+    border-color: #198754;
+    box-shadow: 0 0 0 0.15rem rgba(25, 135, 84, 0.25);
 }
 
-input{
-    border:1px solid #d1d5db;
+
+.table-hover tbody tr:hover{
+    background-color: rgba(25, 135, 84, 0.08);
 }
 
-input:focus{
-    outline:none;
-    border-color:#6366f1;
+
+.card-header{
+    color: #0f5132;
 }
 
-button{
-    border:none;
-    background:#6366f1;
-    color:#fff;
-    cursor:pointer;
-}
-
-button:hover{
-    background:#4f46e5;
-}
 
 a{
-    margin-top:14px;
-    text-align:center;
-    color:#6366f1;
-    text-decoration:none;
-    font-weight:500;
+    color: #198754;
 }
 
-p{
-    margin-top:14px;
-    padding:12px 14px;
-    background:#fff;
-    border-radius:10px;
-    border:1px solid #e5e7eb;
-    font-size:14px;
-} */
+a:hover{
+    color: #146c43;
+}
+
+
+body{
+    background-color: #cceadc !important;
+}
