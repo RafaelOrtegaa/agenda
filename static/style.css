@@ -1,62 +1,77 @@
-:root{
-    --bs-primary: #198754;      
-    --bs-success: #2fbf71;
-    --bs-link-color: #198754;
-    --bs-link-hover-color: #146c43;
+:root {
+    --bs-primary: #0d6efd;
+    --bs-link-color: #0d6efd;
 }
 
-
-.btn-primary{
-    background-color: #198754 !important;
-    border-color: #198754 !important;
+/* Fundo da página */
+body {
+    background-color: #e7f1ff !important;
+    font-family: sans-serif;
 }
 
-.btn-primary:hover{
-    background-color: #146c43 !important;
-    border-color: #146c43 !important;
+/* Estilo para os inputs */
+input[type="text"], input[type="date"] {
+    padding: 8px;
+    border: 1px solid #0d6efd;
+    border-radius: 4px;
+    margin-bottom: 10px;
 }
 
-
-.btn-outline-primary{
-    color: #198754 !important;
-    border-color: #198754 !important;
+/* Botão Salvar (Principal) */
+button[type="submit"], .btn-primary {
+    background-color: #0d6efd !important;
+    border-color: #0d6efd !important;
+    color: white !important;
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
 }
 
-.btn-outline-primary:hover{
-    background-color: #198754 !important;
-    color: #fff !important;
+/* O botão EDITAR que você quer que não seja um bloco sólido */
+.btn-outline-primary {
+    color: #0d6efd !important;
+    background-color: transparent !important;
+    border: 1px solid #0d6efd !important;
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-decoration: none;
 }
 
-
-.card-header.bg-primary{
-    background-color: #198754 !important;
+.btn-outline-primary:hover {
+    background-color: #0d6efd !important;
+    color: white !important;
 }
 
-.form-control:focus{
-    border-color: #198754;
-    box-shadow: 0 0 0 0.15rem rgba(25, 135, 84, 0.25);
+/* Estilização da Lista */
+ul {
+    list-style: none;
+    padding: 0;
 }
 
-
-.table-hover tbody tr:hover{
-    background-color: rgba(25, 135, 84, 0.08);
+li.tarefa-finalizada {
+    background: white;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
-
-.card-header{
-    color: #0f5132;
+.tarefa-concluida {
+    border-left: 5px solid #198754; /* Borda verde para tarefas feitas */
+    background-color: #f8f9fa;
 }
 
+/* Cores dos botões de ação */
+.btn-success { background-color: #198754 !important; color: white !important; border: none; padding: 6px 12px; text-decoration: none; border-radius: 4px; }
+.btn-warning { background-color: #ffc107 !important; color: black !important; border: none; padding: 6px 12px; text-decoration: none; border-radius: 4px; }
+.btn-danger  { background-color: #dc3545 !important; color: white !important; border: none; padding: 6px 12px; text-decoration: none; border-radius: 4px; }
+.btn-secondary { background-color: #6c757d !important; color: white !important; border: none; padding: 6px 12px; text-decoration: none; border-radius: 4px; }
 
-a{
-    color: #198754;
-}
-
-a:hover{
-    color: #146c43;
-}
-
-
-body{
-    background-color: #cceadc !important;
+.tarefa-actions a {
+    margin-left: 5px;
+    font-size: 0.9rem;
 }

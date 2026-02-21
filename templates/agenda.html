@@ -1,64 +1,46 @@
-    {% extends "base.html" %}
+{% extends "base.html" %}
 
-    {% block content %}
-    <form class="mt-3" method="POST">
-            
-            <div class="mb-3">
-                <label for="titulo-tarefa" class="form-label">Título da tarefa</label>
-                <input type="text" class="form-control" name = "titulo-tarefa" id="titulo-tarefa" aria-describedby="ajudaNomeTarefa" value="{{ tarefa_selecionada.titulo_tarefa if
-                tarefa_selecionada else '' }}" required>
-            <div id="ajudaNomeTarefa" class="form-text">Use um nome de tarefa que seja descritivo</div>
-            </div>
+{% block content %}
+    <form method="post">
+        <input type="text" class="titulo" name="titulo-tarefa" id="titulo-tarefa" placeholder="titulo da tarefa" value="{{ tarefa_selecionada.titulo_tarefa if tarefa_selecionada else '' }}">
+        <input type="date" class="data" name="data-conclusao" id="data-conclusao" value="{{ tarefa_selecionada.data_conclusao if tarefa_selecionada else '' }}">
+        <button type="submit">Salvar</button>
 
-            <div class="mb-3">
-                <label for="data-conclusao" class="form-label">Data de conclusão</label>
-                <input type="date" class="form-control" name="data-conclusao" id="data-conclusao"
-                value="{{ tarefa_selecionada.data_conclusao if tarefa_selecionada else '' }}">
-            </div>
-            
-            <button type="submit" class="btn btn-primary">Salvar</button>
-
-            {% if tarefa_selecionada %}
-                <a href="{{ url_for('agenda') }}" class="btn btn-secondary">Cancelar</a>
-            {% endif %}
-
-
+        {% if tarefa_selecionada %}
+            <a href="{{ url_for('agenda') }}" class="btn btn-secondary">Cancelar</a>
+            <a href="{{ url_for('delete', idTarefa=tarefa_selecionada.id_tarefa) }}" class="btn btn-danger">Apagar</a>
+        {% endif %}
     </form>
 
-<h2>Lista de Tarefas</h2>
+    <h2>Lista de tarefas</h2>
 
     {% if tarefas %}
+    <ul>
+        {% for tarefa in tarefas %}
+        <li class="tarefa-finalizada {% if tarefa.concluida == 1 %}tarefa-concluida{% endif %}">
+            <span>
+                {% if tarefa.concluida == 1 %}
+                    <s>{{ tarefa.titulo_tarefa }}</s> | Concluída em: {{ tarefa.data_conclusao_real }}
+                {% else %}
+                    {{ tarefa.titulo_tarefa }} | {{ tarefa.data_conclusao }}
+                {% endif %}
+            </span>
 
-        <ul>
-            {% for tarefa in tarefas %}
-                <li>{{ tarefa.titulo_tarefa }} - {{ tarefa.data_conclusao }} 
-                    <a href="{{ url_for('delete', idTarefa=tarefa.id_tarefa) }}" class="btn btn-danger">🗑️</a>
-                    <a href="{{ url_for('update', idTarefa=tarefa.id_tarefa) }}" class="btn btn-outline-primary">✏️</a>
-                    <!-- Controle para editar -->
-                </li>
-            {% endfor %}    
-        </ul>
+            <div class="tarefa-actions">
+                <a href="{{ url_for('update', idTarefa=tarefa.id_tarefa) }}" class="btn btn-outline-primary">Editar</a>
 
+                {% if tarefa.concluida == 1 %}
+                    <a href="{{ url_for('toggle', idTarefa=tarefa.id_tarefa) }}" class="btn btn-warning">Reabrir</a>
+                {% else %}
+                    <a href="{{ url_for('toggle', idTarefa=tarefa.id_tarefa) }}" class="btn btn-success">Concluir</a>
+                {% endif %}
+
+                <a href="{{ url_for('delete', idTarefa=tarefa.id_tarefa) }}" class="btn btn-danger" onclick="return confirm('Tem certeza? Tarefas concluídas não podem ser excluídas sem reabrir.')">Apagar</a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
     {% else %}
-
         <p>Nenhuma tarefa cadastrada</p>
-
     {% endif %}
-
-    {% endblock %}
-
-<!-- Métodos HTTP:
-     GET -> "pega" (recupera/obtém) as informações (read)
-     POST -> "envia" (cadastra/inclui/adiciona) as informações (create) 
-     UPDATE/PATCH -> "atualiza" as informações (update)
-     DELETE -> "apaga" as informações (delete)
-
-     CROUD -> Create, Read, Update, Delete
--->
-
-<!-- Códigos de retorno:
-     2XX - Sucesso
-     3XX - Sucesso, mas redirecionando
-     4XX - Não encontrado
-     5XX - Erro de servidor (falha na REQUISIÇÃO)
--->
+{% endblock %}
