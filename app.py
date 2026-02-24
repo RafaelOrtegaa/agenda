@@ -1,7 +1,7 @@
 
 from flask import Flask, render_template, request, redirect, url_for
 from models.tarefa import Tarefa
-from models.database import Database
+
 
 app = Flask(__name__)
 
