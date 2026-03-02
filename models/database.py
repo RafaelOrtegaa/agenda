@@ -5,11 +5,14 @@ from dotenv import load_dotenv
 import traceback
 import os
 
+# Pega arquivos e váriaveis do .env
 load_dotenv()
 
+# Nessa linha o sistema define a variável para o caminho do banco de dados
 DB_PATH = os.getenv('DATABASE', './data/tarefas.sqlite3')
 
 
+# Centraliza toda a lógica de acesso ao banco de dados, conexão, consultas...
 class Database:
     def __init__(self, db_name: str = DB_PATH) -> None:
         self.connection: Connection = connect(db_name)

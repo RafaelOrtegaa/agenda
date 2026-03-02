@@ -1,8 +1,11 @@
 from models.database import Database
-from typing import Optional, Self, Any
+from typing import Optional, Self
 from sqlite3 import Cursor
 from datetime import datetime
 
+
+# Esse bloco define o modelo Tarefa do sistema.
+# Ele representa o objeto tarefa dentro da aplicação.
 class Tarefa:
     def __init__(self: Self, 
                  titulo_tarefa: Optional[str] = None, 
